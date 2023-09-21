@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "362406352631",
+    "project_id": "e-quickcount",
+    "storage_bucket": "e-quickcount.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362406352631:android:7bbd7ca429a3201222e5f2",
+        "android_client_info": {
+          "package_name": "com.example.e_quickcount"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGE0u3OMwnO4qSWECQgT0nzD8C2NGbR0c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
