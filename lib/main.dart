@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,15 +19,21 @@ Future<void> main() async {
   runApp(MyApp(isLoggedIn: isLoggedIn));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   final bool isLoggedIn;
+
   const MyApp({Key? key, required this.isLoggedIn}) : super(key: key);
 
-  // This widget is the root of your application.
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'E-Quick Count',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme:
             const ColorScheme.highContrastLight(onPrimary: Color(0xFF005AE1)),
@@ -42,7 +50,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: isLoggedIn ? const Dashboard() : const LoginPage(),
+      home: widget.isLoggedIn ? const Dashboard() : const LoginPage(),
     );
   }
 }

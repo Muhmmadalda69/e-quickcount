@@ -129,10 +129,13 @@ class _LoginPageState extends State<LoginPage> {
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
+      // ignore: unused_local_variable
+      final currentUserId = userCredential.user?.email;
 
       if (userCredential.user != null) {
         // Login berhasil, simpan status login
         final prefs = await SharedPreferences.getInstance();
+        prefs.setString('currentUserId', currentUserId!);
         prefs.setBool('isLoggedIn', true);
 
         // Pindah ke halaman utama

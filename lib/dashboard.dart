@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import 'profile.dart';
 import 'tambah_data.dart';
 
 class Dashboard extends StatefulWidget {
@@ -21,14 +22,27 @@ class _DashboardState extends State<Dashboard> {
   String wibTime = '';
   String witTime = '';
   String witaTime = '';
+  late Timer _timer;
 
   @override
   void initState() {
     super.initState();
     // Mulai timer untuk memperbarui waktu setiap detik.
     Timer.periodic(const Duration(seconds: 1), (Timer t) {
+      _startTimer();
+    });
+  }
+
+  // Metode untuk memulai timer
+  void _startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (Timer t) {
       updateTimes();
     });
+  }
+
+  // Metode untuk menghentikan timer
+  void _stopTimer() {
+    _timer.cancel();
   }
 
   void updateTimes() {
@@ -44,10 +58,29 @@ class _DashboardState extends State<Dashboard> {
   }
 
   @override
+  void dispose() {
+    // Hentikan timer saat widget di-"dispose"
+    _stopTimer();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('DASHBOARD'),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.account_circle),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          const ProfilePage(title: 'PROFIL')));
+            },
+          ),
+        ],
       ),
       body: Container(
         height: 100,
